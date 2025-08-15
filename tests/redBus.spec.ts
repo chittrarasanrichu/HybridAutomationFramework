@@ -1,6 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect , chromium } from '@playwright/test';
 
-test('RedBusDestinationselection', async ({ page }) => {
+test('RedBusDestinationselection', async () => {
+
+  const browser = await chromium.launch({headless: false, args: ['--disable-http2']});
+    const context = await browser.newContext();
+    const page = await context.newPage();
   await page.goto("https://www.redbus.in/" );
         await page.locator(`div[class*="labelCityWrapper___"] div[class*='label']`).nth(0).click();
         await page.locator('div[class*="suggestionInputWrapper___"] div div').type('Tambaram');
