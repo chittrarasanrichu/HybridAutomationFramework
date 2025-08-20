@@ -10,7 +10,7 @@ test.describe('ticket booking flow' , async()=>{
 
 test('RedBusDestinationselection @TC001', async () => {
 
-        const page = await reusableFun.browserLaunch(); 
+        const page = await reusableFun.browserLaunch();
         const urlObj = new urlMethods(page);
         const dashboardObj = new dashboard(page);
         await urlObj.baseUrl;
@@ -18,7 +18,8 @@ test('RedBusDestinationselection @TC001', async () => {
         await dashboardObj.textValidationFromCity();
         await dashboardObj.toField(page);
         await dashboardObj.textValidationToCity();
-        await dashboardObj.dataPicker();
+        await dashboardObj.tomorrowsDate();
+        await dashboardObj.totalBusCount();
         
 });
 

@@ -20,7 +20,8 @@ export default defineConfig({
     screenshot:'on',
     video : 'on',
     trace : 'on-first-retry',
-    headless : true   
+    ignoreHTTPSErrors: true,
+    headless : true
    // browserName : 'chromium'
   },
 
