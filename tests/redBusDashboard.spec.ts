@@ -1,23 +1,22 @@
 import { test, expect , chromium } from '@playwright/test';
 import { reusableFunction } from '../shared/utils/usefulMethod.ts';
-import { urlMethods } from '../shared/page/url.ts';
-import { dashboard } from '../shared/page/dashborad.ts';
-import {Dataset1 as data} from '../shared/testData/data.json'
+import {Dataset1 as data} from '../testData/data.json'
+import { pomManager } from '../shared/page/POMmanager.ts';
 
 test.describe('ticket booking flow' , async()=>{
 
- const reusableFun = new reusableFunction();  
-
 test('RedBusDestinationselection @TC001', async () => {
 
+        const reusableFun = new reusableFunction();
         const page = await reusableFun.browserLaunch();
-        const urlObj = new urlMethods(page);
-        const dashboardObj = new dashboard(page);
-        await urlObj.baseUrl;
-        await dashboardObj.fromField(page);
-        await dashboardObj.textValidationFromCity();
-        await dashboardObj.toField(page);
-        await dashboardObj.textValidationToCity();
+        const poManager = new pomManager(page);
+        const urlObj = poManager.getUrl();
+        const dashboardObj = poManager.getDashboard(); 
+        await urlObj.getbaseUrl();
+        await dashboardObj.fromField(page , data.fromLocation);
+        await dashboardObj.textValidationFromCity(data.fromLocationExpectedTxt);
+        await dashboardObj.toField(page , data.toLocation );
+        await dashboardObj.textValidationToCity(data.toLocationExpectedTxt);
         await dashboardObj.tomorrowsDate();
         await dashboardObj.totalBusCount();
         

@@ -28,33 +28,33 @@ export class dashboard{
 
     }
 
-    async fromField(page){
+    async fromField(page , fromCity){
         await this.fromtextBox.click();
-        await this.fromtextBox.type('Tambaram');
+        await this.fromtextBox.type(fromCity);
         await page.waitForTimeout(1000);
         await this.autoSuggestionDrop.click();
         await page.waitForTimeout(1000);
 
     }
-    async textValidationFromCity(){
+    async textValidationFromCity(fromLocationExpectedTxt){
       const fromCityArr = await this.fromCityTxt.allTextContents();
       const fromCity = fromCityArr.toString();
       console.log("fromCity :" , fromCity);
-      expect(fromCity).toBe("Tambaram, Chennai");
+      expect(fromCity).toBe(fromLocationExpectedTxt);
     }
-    async toField(page){
+    async toField(page , toLocation){
         await this.toCityTxtBox.click();
-        await this.toCityTxtBox.type('Trichy');
+        await this.toCityTxtBox.type(toLocation);
         await page.waitForTimeout(1000);
         await this.autoSuggestionDrop.click();
         await page.waitForTimeout(1000);
 
     }
-    async textValidationToCity(){
+    async textValidationToCity(toLocationExpectedTxt){
       const toCityArr = await this.toCityTxt.allTextContents();
       const toCity = toCityArr.toString();
       console.log("ToCity :" , toCity);
-      expect(toCity).toBe("Trichy");
+      expect(toCity).toBe(toLocationExpectedTxt);
     }
     async dataPicker(){
       await this.calenderIcon.click();

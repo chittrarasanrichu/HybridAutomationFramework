@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
- export class urlMethods{
+ export class urlMethod{
     readonly page : Page;
     readonly baseUrl : Locator;
     constructor(page){
@@ -9,4 +9,8 @@ import { Locator, Page } from "@playwright/test";
   timeout: 60000,
 });
     }
+
+async getbaseUrl(){
+    await this.baseUrl;
+}
 }
